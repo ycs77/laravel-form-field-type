@@ -153,16 +153,12 @@ class FieldType
                     $type = $type === 'checkbox_group' ? 'checkbox' : 'radio';
                     $config = $this->formConfig['defaults']['checkable_group'][$type] ?? [];
 
-                    $childForm = $form->getFormBuilder()->plain();
+                    $childForm = $form->getFormBuilder()->plain($field['form_options'] ?? []);
                     foreach ($field['options'] as $option => $data) {
                         if (is_string($data)) {
-                            $label = $data;
+                            $value = $data;
                             $data = [];
-                            $data['label'] = $label;
-                            $data['value'] = $label;
-                        }
-                        if (isset($data['value']) && !isset($data['label'])) {
-                            $data['label'] = $data['value'];
+                            $data['value'] = $value;
                         }
                         $childForm->add($option, $type, array_merge([
                             'wrapper' => [
@@ -170,6 +166,7 @@ class FieldType
                             ],
                         ], $data));
                     }
+                    unset($field['form_options']);
                     unset($field['options']);
 
                     $form->add($id, 'checkable_group', array_merge($field, [
