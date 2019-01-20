@@ -1,3 +1,5 @@
+## 1.0.4
+- Add override field type
 ## 1.0.3
 - Fix checkable_group label and form options
 - Update FieldType Facade

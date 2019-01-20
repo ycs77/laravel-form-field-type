@@ -66,6 +66,25 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
+    public function test_override_type()
+    {
+        // arrange
+        $expected = [
+            'id' => 'nickname',
+            'type' => 'text',
+            'rules' => 'required|max:20',
+        ];
+
+        // act
+        $actual = FieldType::type('nickname', [
+            'type' => 'name',
+        ]);
+
+        // assert
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
     public function test_fields_method()
     {
         // arrange

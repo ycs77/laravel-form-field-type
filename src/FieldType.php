@@ -40,16 +40,22 @@ class FieldType
     public function type(string $name, array $data = [])
     {
         $default = [];
-        if (isset($this->config['types'][$name])) {
-            $default = $this->config['types'][$name];
+
+        if (isset($this->config['types'][$data['type'] ?? null])) {
+            $default = $this->config['types'][$data['type']];
+            unset($data['type']);
+        } elseif (isset($this->config['types'][$name])) {
+            $default = array_merge(
+                $default,
+                $this->config['types'][$name]
+            );
         }
-        $result = array_merge(
+
+        return array_merge(
             $default,
             ['id' => $name],
             $data
         );
-
-        return $result;
     }
 
     /**

@@ -94,23 +94,40 @@ If you enter a field defined by `config/field.php`, the field will be returned.
 
 Return the complete type of the specified type of data:
 
+Get field:
 ```php
-$array = FieldType::type('name');
+$array = FieldType::type('age', [
+    'type' => 'number',
+]);
+
+// [
+//     'id'   => 'age',
+//     'type' => 'number',
+// ]
+```
+
+Get exist field type:
+```php
+$array_2 = FieldType::type('name');
 
 // [
 //     'id'    => 'name',
 //     'type'  => 'text',
 //     'rules' => 'required|max:20',
 // ]
+```
 
-$fields_2 = [
-    'type' => 'number',
-];
-$array_2 = FieldType::type('age', $fields_2);
+Override field type:
+```php
+$array_3 = FieldType::type('nickname', [
+    'type' => 'name',
+    'rules' => 'required',
+]);
 
 // [
-//     'id'   => 'age',
-//     'type' => 'number',
+//     'id'    => 'nickname',
+//     'type'  => 'text',
+//     'rules' => 'required',
 // ]
 ```
 
