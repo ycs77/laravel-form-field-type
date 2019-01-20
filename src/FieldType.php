@@ -79,7 +79,7 @@ class FieldType
      * @param  array $fields
      * @return array
      */
-    public function list($fields)
+    public function list(array $fields)
     {
         return array_map(function ($value) {
             return $value['id'];
@@ -93,7 +93,7 @@ class FieldType
      * @param  Closure $collback
      * @return array
      */
-    public function map($fields, Closure $collback)
+    public function map(array $fields, Closure $collback)
     {
         return array_map($collback, $this->fields($fields));
     }

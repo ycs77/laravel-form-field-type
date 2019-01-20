@@ -1,5 +1,6 @@
 ## 1.0.3
 - Fix checkable_group label and form options
+- Update FieldType Facade
 ## 1.0.2
 - Add checkable_group view
 - Fix rules empty bug
