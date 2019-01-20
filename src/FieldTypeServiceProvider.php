@@ -25,6 +25,7 @@ class FieldTypeServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/Fields/CheckableGroupType.php' => app_path('Forms/Fields/CheckableGroupType.php'),
+            __DIR__ . '/../resources/views/checkable_group.php' => resource_path('views/vendor/laravel-form-builder/checkable_group.php'),
         ], 'laravel-form-checkable-group-type');
     }
 
@@ -35,9 +36,6 @@ class FieldTypeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../config/field.php',
-            'field'
-        );
+        $this->mergeConfigFrom(__DIR__ . '/../config/field.php', 'field');
     }
 }
