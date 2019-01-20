@@ -31,6 +31,7 @@ The commonly used fields can be defined in `config/field.php` and the FieldType 
 
 ```php
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use Ycs77\LaravelFormFieldType\Facades\FieldType;

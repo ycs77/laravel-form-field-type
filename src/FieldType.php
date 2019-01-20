@@ -197,7 +197,9 @@ class FieldType
         $rules = [];
 
         foreach ($this->fields($fields) as $field) {
-            $rules[$field['id']] = $field['rules'];
+            if (isset($field['rules'])) {
+                $rules[$field['id']] = $field['rules'];
+            }
         }
 
         return $rules;
