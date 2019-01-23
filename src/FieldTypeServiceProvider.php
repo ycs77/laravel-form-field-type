@@ -3,6 +3,7 @@
 namespace Ycs77\LaravelFormFieldType;
 
 use Illuminate\Support\ServiceProvider;
+use Ycs77\LaravelFormFieldType\FieldType;
 
 class FieldTypeServiceProvider extends ServiceProvider
 {
@@ -13,12 +14,6 @@ class FieldTypeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton('Ycs77\LaravelFormFieldType\FieldType', function ($app) {
-            return new \Ycs77\LaravelFormFieldType\FieldType($app);
-        });
-
-        $this->app->alias('Ycs77\LaravelFormFieldType\FieldType', 'laravel-form-field-type');
-
         $this->publishes([
             __DIR__ . '/../config/field.php' => config_path('field.php'),
         ], 'laravel-form-field-type-config');
@@ -36,6 +31,10 @@ class FieldTypeServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('laravel-form-field-type', function ($app) {
+            return new FieldType($app);
+        });
+
         $this->mergeConfigFrom(__DIR__ . '/../config/field.php', 'field');
     }
 }
