@@ -153,37 +153,7 @@ class FieldType
             $type = $field['type'];
             unset($field['type']);
 
-            switch ($type) {
-                case 'checkbox_group':
-                case 'radio_group':
-                    $type = $type === 'checkbox_group' ? 'checkbox' : 'radio';
-                    $config = $this->formConfig['defaults']['checkable_group'][$type] ?? [];
-
-                    $childForm = $form->getFormBuilder()->plain($field['form_options'] ?? []);
-                    foreach ($field['options'] as $option => $data) {
-                        if (is_string($data)) {
-                            $value = $data;
-                            $data = [];
-                            $data['value'] = $value;
-                        }
-                        $childForm->add($option, $type, array_merge([
-                            'wrapper' => [
-                                'class' => $config['wrapper_class'] ?? null,
-                            ],
-                        ], $data));
-                    }
-                    unset($field['form_options']);
-                    unset($field['options']);
-
-                    $form->add($id, 'checkable_group', array_merge($field, [
-                        'class' => $childForm,
-                    ]));
-                    break;
-
-                default:
-                    $form->add($id, $type, $field);
-                    break;
-            }
+            $form->add($id, $type, $field);
         }
 
         return $form;

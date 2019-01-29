@@ -1,3 +1,6 @@
+## 1.1.0
+- Update the CheckableGroupType to be based on ChoiceType.
+
 ## 1.0.5
 - Update ServiceProvider
 ## 1.0.4

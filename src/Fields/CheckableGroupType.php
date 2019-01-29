@@ -2,10 +2,20 @@
 
 namespace App\Forms\Fields;
 
-use Kris\LaravelFormBuilder\Fields\ChildFormType;
+use Kris\LaravelFormBuilder\Fields\ParentType;
 
-class CheckableGroupType extends ChildFormType
+class CheckableGroupType extends ParentType
 {
+    /**
+     * @var string
+     */
+    protected $checkableType = 'checkbox';
+
+    /**
+     * @inheritdoc
+     */
+    protected $valueProperty = 'selected';
+
     /**
      * @inheritdoc
      */
@@ -15,28 +25,121 @@ class CheckableGroupType extends ChildFormType
     }
 
     /**
+     * Determine which checkable group type to use.
+     *
+     * @return string
+     */
+    protected function determineCheckableField()
+    {
+        $is_checkbox = $this->options['is_checkbox'];
+
+        if (!$is_checkbox) {
+            $this->checkableType = 'radio';
+        }
+
+        if ($is_checkbox) {
+            $this->checkableType = 'checkbox';
+        }
+
+        return $this->checkableType;
+    }
+
+    /**
      * @inheritdoc
+     */
+    protected function getDefaults()
+    {
+        return [
+            'choices' => null,
+            'selected' => null,
+            'is_checkbox' => true,
+            'choice_options' => [
+                'wrapper' => false,
+                'is_child' => true,
+            ],
+        ];
+    }
+
+    /**
+     * Create children depending on checkable group type.
+     *
+     * @return void
      */
     protected function createChildren()
     {
-        parent::createChildren();
-
-        // $child is radio or checkbox.
-        foreach ($this->children as $key => $child) {
-
-            $id = $child->name;
-
-            // Set child ID to child name
-            $child->options['attr']['id'] = $id;
-
-            if ($child->type === 'radio') {
-                // Set child label attribute "for" to child name.
-                $child->options['label_attr']['for'] = $id;
-
-                // Set the child name to this child form name,
-                // because Radio's names must all be the same.
-                $child->name = $this->name;
-            }
+        if (($data_override = $this->getOption('data_override')) && $data_override instanceof \Closure) {
+            $this->options['choices'] = $data_override($this->options['choices'], $this);
         }
+
+        $this->children = [];
+        $this->determineCheckableField();
+
+        $fieldType = $this->formHelper->getFieldType($this->checkableType);
+
+        $this->buildCheckableChildren($fieldType);
+    }
+
+    /**
+     * Build checkable children fields from checkable group type.
+     *
+     * @param string $fieldType
+     * @return void
+     */
+    protected function buildCheckableChildren($fieldType)
+    {
+        $is_checkbox = $this->getOption('is_checkbox') ? '[]' : '';
+
+        foreach ((array)$this->options['choices'] as $key => $choice) {
+            $id = str_replace('.', '_', $this->getNameKey()) . '_' . $key;
+            $options = $this->formHelper->mergeOptions(
+                $this->getOption('choice_options'),
+                [
+                    'attr' => ['id' => $id],
+                    'label_attr' => ['for' => $id],
+                    'label' => $choice,
+                    'checked' => in_array($key, (array)$this->options[$this->valueProperty]),
+                    'value' => $key
+                ]
+            );
+            $this->children[] = new $fieldType(
+                $this->name . $is_checkbox,
+                $this->checkableType,
+                $this->parent,
+                $options
+            );
+        }
+    }
+
+    /**
+     * Creates default wrapper classes for the form element.
+     *
+     * @param array $options
+     * @return array
+     */
+    protected function setDefaultClasses(array $options = [])
+    {
+        $defaults = parent::setDefaultClasses($options);
+        $checkable_type = $this->determineCheckableField();
+
+        $wrapper_class = $this->formHelper->getConfig('defaults.' . $this->type . '.' . $checkable_type . '_wrapper_class', '');
+        if ($wrapper_class) {
+            $defaults['wrapper']['class'] = (isset($defaults['wrapper']['class']) ? $defaults['wrapper']['class'] . ' ' : '') . $wrapper_class;
+        }
+
+        $choice_wrapper_class = $this->formHelper->getConfig('defaults.' . $checkable_type . '.choice_options.wrapper_class', '');
+        $choice_label_class = $this->formHelper->getConfig('defaults.' . $checkable_type . '.choice_options.label_class', '');
+        $choice_field_class = $this->formHelper->getConfig('defaults.' . $checkable_type . '.choice_options.field_class', '');
+
+        if ($choice_wrapper_class) {
+            $defaults['choice_options']['wrapper']['class'] = $choice_wrapper_class;
+        }
+        if ($choice_label_class) {
+            $defaults['choice_options']['label_attr']['class'] = $choice_label_class;
+        }
+        if ($choice_field_class) {
+            $defaults['choice_options']['attr']['class'] = $choice_field_class;
+        }
+
+        return $defaults;
     }
 }

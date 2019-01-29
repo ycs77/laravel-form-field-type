@@ -267,12 +267,15 @@ return [
 $form = $this->plain();
 $fields = [
     'checkbox_group_field' => [
-        'type' => 'checkbox_group',
-        'options' => [
-            'checkbox_1' => 'Checkbox 1',
-            'checkbox_2' => 'Checkbox 2',
-            'checkbox_3' => 'Checkbox 3',
+        'type' => 'checkable_group',
+        'choices' => [
+            'en' => 'English',
+            'fr' => 'French',
         ],
+        'choice_options' => [
+            'wrapper' => ['class' => ''],
+        ],
+        'selected' => ['en'],
     ],
 ];
 $form = FieldType::render($form, $fields);
@@ -290,14 +293,23 @@ return [
     'defaults' => [
         ...
 
-        'checkable_group' => [
+        'checkbox' => [
             ...
 
-            'checkbox' => [
+            'choice_options' => [
                 'wrapper_class' => 'custom-control custom-checkbox',
+                'label_class' => 'custom-control-label',
+                'field_class' => 'custom-control-input',
             ],
-            'radio' => [
+        ],
+
+        'radio' => [
+            ...
+
+            'choice_options' => [
                 'wrapper_class' => 'custom-control custom-radio',
+                'label_class' => 'custom-control-label',
+                'field_class' => 'custom-control-input',
             ],
         ],
     ],

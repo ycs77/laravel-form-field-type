@@ -212,30 +212,28 @@ class FieldTypeTest extends TestCase
         $form     = FormBuilder::plain();
         $expected = FormBuilder::plain()
             ->add('checkbox_group_field', 'checkable_group', [
-                'class' => FormBuilder::plain()
-                    ->add('checkbox_1', 'checkbox', [
-                        'label' => 'Checkbox 1',
-                        'value' => 'Checkbox 1',
-                    ])
-                    ->add('checkbox_2', 'checkbox', [
-                        'label' => 'Checkbox 2',
-                        'value' => 'Checkbox 2',
-                    ])
-                    ->add('checkbox_3', 'checkbox', [
-                        'label' => 'Checkbox 3',
-                        'value' => 'Checkbox 3',
-                    ]),
+                'choices' => [
+                    'en' => 'English',
+                    'fr' => 'French',
+                ],
+                'choice_options' => [
+                    'wrapper' => ['class' => ''],
+                ],
+                'selected' => ['en'],
             ]);
 
         // act
         $actual = FieldType::render($form, [
             'checkbox_group_field' => [
-                'type' => 'checkbox_group',
-                'options' => [
-                    'checkbox_1' => 'Checkbox 1',
-                    'checkbox_2' => 'Checkbox 2',
-                    'checkbox_3' => 'Checkbox 3',
+                'type' => 'checkable_group',
+                'choices' => [
+                    'en' => 'English',
+                    'fr' => 'French',
                 ],
+                'choice_options' => [
+                    'wrapper' => ['class' => ''],
+                ],
+                'selected' => ['en'],
             ],
         ]);
 
