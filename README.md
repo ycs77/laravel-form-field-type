@@ -273,7 +273,9 @@ $fields = [
             'fr' => 'French',
         ],
         'choice_options' => [
-            'wrapper' => ['class' => ''],
+            'wrapper' => [
+                'class' => 'form-control',
+            ],
         ],
         'selected' => ['en'],
     ],
@@ -292,6 +294,11 @@ $form = FieldType::render($form, $fields);
 return [
     'defaults' => [
         ...
+
+        'checkable_group' => [
+            'wrapper_class' => 'form-group',
+            'label_class'   => '',
+        ],
 
         'checkbox' => [
             ...

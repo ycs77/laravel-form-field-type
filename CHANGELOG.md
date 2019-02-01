@@ -1,3 +1,5 @@
+## 1.1.1
+- Update README.md
 ## 1.1.0
 - Update the CheckableGroupType to be based on ChoiceType.
 
