@@ -1,3 +1,5 @@
+## 1.1.2
+- Fix CheckableGroupType lang bug
 ## 1.1.1
 - Update README.md
 ## 1.1.0

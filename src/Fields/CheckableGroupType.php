@@ -55,7 +55,6 @@ class CheckableGroupType extends ParentType
             'is_checkbox' => true,
             'choice_options' => [
                 'wrapper' => false,
-                'is_child' => true,
             ],
         ];
     }
@@ -90,17 +89,23 @@ class CheckableGroupType extends ParentType
         $is_checkbox = $this->getOption('is_checkbox') ? '[]' : '';
 
         foreach ((array)$this->options['choices'] as $key => $choice) {
+            if (is_numeric($key) && $choice !== null) {
+                $key = $choice;
+                $choice = null;
+            }
+
             $id = str_replace('.', '_', $this->getNameKey()) . '_' . $key;
             $options = $this->formHelper->mergeOptions(
                 $this->getOption('choice_options'),
                 [
                     'attr' => ['id' => $id],
                     'label_attr' => ['for' => $id],
-                    'label' => $choice,
+                    'label' => $this->childrenLabel($choice, $key),
                     'checked' => in_array($key, (array)$this->options[$this->valueProperty]),
-                    'value' => $key
+                    'value' => $key,
                 ]
             );
+
             $this->children[] = new $fieldType(
                 $this->name . $is_checkbox,
                 $this->checkableType,
@@ -141,5 +146,25 @@ class CheckableGroupType extends ParentType
         }
 
         return $defaults;
+    }
+
+    /**
+     * Return the label for the form field children.
+     *
+     * @param string $label
+     * @param string $name
+     * @return string
+     */
+    protected function childrenLabel($label, $name)
+    {
+        if ($label !== null) {
+            return $label;
+        }
+
+        if ($langName = $this->parent->getLanguageName()) {
+            $label = sprintf('%s.%s', $langName, $name);
+        }
+
+        return $this->formHelper->formatLabel($label);
     }
 }
