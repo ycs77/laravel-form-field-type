@@ -66,12 +66,7 @@ class MyController extends Controller
         $rules = FieldType::rules($this->fields);
 
         // Verification.
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+        $request->validate($rules);
 
         // Get the information.
         $requestData = $request->only(
