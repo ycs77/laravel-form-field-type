@@ -40,22 +40,27 @@ class FieldType
     public function type(string $name, array $data = [])
     {
         $default = [];
+        $types = $this->config['types'];
 
-        if (isset($this->config['types'][$data['type'] ?? null])) {
-            $default = $this->config['types'][$data['type']];
+        if (isset($types[$name])) {
+            $default = $types[$name];
+        } elseif (isset($types[$data['type'] ?? null])) {
+            $default = $types[$data['type']];
             unset($data['type']);
-        } elseif (isset($this->config['types'][$name])) {
-            $default = array_merge(
-                $default,
-                $this->config['types'][$name]
-            );
         }
 
-        return array_merge(
+        $field = array_merge(
             $default,
             ['id' => $name],
             $data
         );
+
+        if (isset($field['front_rules'])) {
+            $field['rules'] = $field['front_rules'];
+            unset($field['front_rules']);
+        }
+
+        return $field;
     }
 
     /**
@@ -170,7 +175,9 @@ class FieldType
         $rules = [];
 
         foreach ($this->fields($fields) as $field) {
-            if (isset($field['rules'])) {
+            if (isset($field['back_rules'])) {
+                $rules[$field['id']] = $field['back_rules'];
+            } elseif (isset($field['rules'])) {
                 $rules[$field['id']] = $field['rules'];
             }
         }

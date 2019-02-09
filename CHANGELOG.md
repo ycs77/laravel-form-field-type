@@ -1,3 +1,5 @@
+## 1.1.3
+- Add front and back rules
 ## 1.1.2
 - Fix CheckableGroupType lang bug
 ## 1.1.1

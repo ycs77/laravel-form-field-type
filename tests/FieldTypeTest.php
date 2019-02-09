@@ -51,6 +51,25 @@ class FieldTypeTest extends TestCase
     {
         // arrange
         $expected = [
+            'id' => 'nickname',
+            'type' => 'text',
+            'rules' => 'required|max:20',
+        ];
+
+        // act
+        $actual = FieldType::type('nickname', [
+            'type' => 'name',
+        ]);
+
+        // assert
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function test_override_type()
+    {
+        // arrange
+        $expected = [
             'id' => 'name',
             'type' => 'text',
             'rules' => 'required',
@@ -66,18 +85,18 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_override_type()
+    public function test_type_method_use_front_rules()
     {
         // arrange
         $expected = [
-            'id' => 'nickname',
+            'id' => 'name',
             'type' => 'text',
-            'rules' => 'required|max:20',
+            'rules' => 'required',
         ];
 
         // act
-        $actual = FieldType::type('nickname', [
-            'type' => 'name',
+        $actual = FieldType::type('name', [
+            'front_rules' => 'required',
         ]);
 
         // assert
@@ -246,16 +265,19 @@ class FieldTypeTest extends TestCase
     {
         // arrange
         $expected = [
-            'name' => 'required|max:20',
-            'age'  => 'required',
+            'name'  => 'required|max:20',
+            'phone' => 'required',
+            'age'   => 'required',
         ];
 
         // act
         $actual = FieldType::rules([
             'name',
-            'age' => [
-                'type'  => 'number',
+            'phone' => [
                 'rules' => 'required',
+            ],
+            'age' => [
+                'back_rules' => 'required',
             ],
         ]);
 

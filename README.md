@@ -108,24 +108,40 @@ $array = FieldType::type('age', [
 
 Get exist field type:
 ```php
-$array_2 = FieldType::type('name');
-
-// [
-//     'id'    => 'name',
-//     'type'  => 'text',
-//     'rules' => 'required|max:20',
-// ]
-```
-
-Override field type:
-```php
-$array_3 = FieldType::type('nickname', [
+$array_2 = FieldType::type('nickname', [
     'type' => 'name',
     'rules' => 'required',
 ]);
 
 // [
 //     'id'    => 'nickname',
+//     'type'  => 'text',
+//     'rules' => 'required',
+// ]
+```
+
+Override field type:
+```php
+$array_3 = FieldType::type('name', [
+    'rules' => 'required',
+]);
+
+// [
+//     'id'    => 'name',
+//     'type'  => 'text',
+//     'rules' => 'required',
+// ]
+```
+
+If use `front_rules` attribute, only front use this rules:
+```php
+$array_front_rules = FieldType::type('name', [
+    'type' => 'name',
+    'front_rules' => 'required',
+]);
+
+// [
+//     'id'    => 'name',
 //     'type'  => 'text',
 //     'rules' => 'required',
 // ]
@@ -219,21 +235,26 @@ $form = FieldType::render($form, $fields);
 
 ### rules
 
+If use `back_rules` attribute, only back use this rules.
+
 Parsing validation rules:
 
 ```php
 $fields = [
     'name',
-    'age' => [
-        'type'  => 'number',
+    'phone' => [
         'rules' => 'required',
+    ],
+    'age' => [
+        'back_rules' => 'required',
     ],
 ];
 $array = FieldType::rules($fields);
 
 // [
-//     'name' => 'required|max:20',
-//     'age'  => 'required',
+//     'name'  => 'required|max:20',
+//     'phone' => 'required',
+//     'age'   => 'required',
 // ]
 ```
 
