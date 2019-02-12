@@ -199,6 +199,7 @@ $fields = [
     ],
 ];
 $data = [
+    'name'         => 'Bob',
     'meeting_time' => '2018-01-01T00:00',
 ];
 $array = FieldType::casts($fields, $data);
