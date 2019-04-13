@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Forms\Fields;
+namespace Ycs77\LaravelFormFieldType\Fields;
 
 use Kris\LaravelFormBuilder\Fields\ParentType;
 

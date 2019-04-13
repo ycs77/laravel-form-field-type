@@ -29,7 +29,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Forms\\Fields\\": "src/Fields/",
             "Ycs77\\LaravelFormFieldType\\Test\\": "tests"
         }
     },

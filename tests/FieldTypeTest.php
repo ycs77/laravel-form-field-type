@@ -12,7 +12,7 @@ class FieldTypeTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -41,7 +41,7 @@ class FieldTypeTest extends TestCase
 
         $app['config']->set('laravel-form-builder', [
             'custom_fields' => [
-                'checkable_group' => '\App\Forms\Fields\CheckableGroupType',
+                'checkable_group' => '\Ycs77\LaravelFormFieldType\Fields\CheckableGroupType',
             ],
         ]);
     }

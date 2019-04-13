@@ -13,9 +13,11 @@
         <?= $child->render($options['choice_options'], true, true, false) ?>
     <?php endforeach; ?>
 
+    <?php if ($showError && isset($errors) && $errors->has($nameKey)): ?>
+    <div class="d-none form-control is-invalid"></div>
+    <?php endif; ?>
     <?php include 'errors.php' ?>
     <?php include 'help_block.php' ?>
-
 <?php endif; ?>
 
 <?php if ($showLabel && $showField): ?>

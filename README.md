@@ -271,7 +271,7 @@ return [
     ...
 
     'custom_fields' => [
-        'checkable_group' => '\App\Forms\Fields\CheckableGroupType',
+        'checkable_group' => '\Ycs77\LaravelFormFieldType\Fields\CheckableGroupType',
         ...
     ],
 ];
