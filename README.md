@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-circleci]][link-circleci]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Fast set the form fields of the [Laravel form builder](https://github.com/kristijanhusak/laravel-form-builder).
@@ -346,11 +346,9 @@ return [
 
 [ico-version]: https://img.shields.io/packagist/v/ycs77/laravel-form-field-type.svg?style=flat
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
-[ico-travis]: https://img.shields.io/travis/ycs77/laravel-form-field-type/master.svg?style=flat
+[ico-circleci]: https://img.shields.io/circleci/project/github/ycs77/laravel-form-field-type/master.svg?style=flat
 [ico-downloads]: https://img.shields.io/packagist/dt/ycs77/laravel-form-field-type.svg?style=flat
 
 [link-packagist]: https://packagist.org/packages/ycs77/laravel-form-field-type
-[link-travis]: https://travis-ci.org/ycs77/laravel-form-field-type
+[link-circleci]: https://circleci.com/gh/ycs77/laravel-form-field-type
 [link-downloads]: https://packagist.org/packages/ycs77/laravel-form-field-type
-[link-author]: https://github.com/ycs77
-[link-contributors]: ../../contributors
