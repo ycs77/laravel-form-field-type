@@ -259,7 +259,7 @@ $array = FieldType::rules($fields);
 
 ## Use checkable group
 
-Now Laravel form builder has not added the checkable group feature. If you need to use this feature, you need to add it as follows:
+If you need to use best checkable group feature, you need to add it as follows:
 
 ```bash
 php artisan vendor:publish --tag=laravel-form-checkable-group-type
@@ -291,12 +291,13 @@ $fields = [
             'en' => 'English',
             'fr' => 'French',
         ],
-        'choice_options' => [
-            'wrapper' => [
-                'class' => 'form-control',
-            ],
-        ],
+        'is_checkbox' => true, // False is radio
         'selected' => ['en'],
+        // 'choice_options' => [
+        //     'wrapper' => [
+        //         'class' => 'form-control',
+        //     ],
+        // ],
     ],
 ];
 $form = FieldType::render($form, $fields);
@@ -316,7 +317,7 @@ return [
 
         'checkable_group' => [
             'wrapper_class' => 'form-group',
-            'label_class'   => '',
+            'label_class'   => ' ',
         ],
 
         'checkbox' => [

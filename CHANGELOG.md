@@ -1,3 +1,7 @@
+# CHANGELOG
+
+## 1.1.4
+- Update use CheckableGroupType in the vendor
 ## 1.1.3
 - Add front and back rules
 ## 1.1.2
