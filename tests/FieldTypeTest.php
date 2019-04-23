@@ -47,7 +47,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_type_method()
+    public function testTypeMethod()
     {
         // arrange
         $expected = [
@@ -66,7 +66,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_override_type()
+    public function testOverrideType()
     {
         // arrange
         $expected = [
@@ -85,7 +85,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_type_method_use_front_rules()
+    public function testTypeMethodUseFrontRules()
     {
         // arrange
         $expected = [
@@ -104,7 +104,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_fields_method()
+    public function testFieldsMethod()
     {
         // arrange
         $expected = [
@@ -132,7 +132,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_list_method()
+    public function testListMethod()
     {
         // arrange
         $expected = [
@@ -153,7 +153,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_map_method()
+    public function testMapMethod()
     {
         // arrange
         $expected = [
@@ -176,7 +176,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_casts_method()
+    public function testCastsMethod()
     {
         // arrange
         $expected = [
@@ -199,7 +199,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_render_method()
+    public function testRenderMethod()
     {
         // arrange
         $form     = FormBuilder::plain();
@@ -225,7 +225,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_render_checkbox_group()
+    public function testRenderCheckboxGroup()
     {
         // arrange
         $form     = FormBuilder::plain();
@@ -261,7 +261,7 @@ class FieldTypeTest extends TestCase
     }
 
     /** @test */
-    public function test_rules_method()
+    public function testRulesMethod()
     {
         // arrange
         $expected = [
