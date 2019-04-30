@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.1.5
+- Throw field type exception
 ## 1.1.4
 - Update use CheckableGroupType in the vendor
 ## 1.1.3
