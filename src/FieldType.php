@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Traits\Macroable;
 use Kris\LaravelFormBuilder\Form;
+use Ycs77\LaravelFormFieldType\Exceptions\LaravelFormFieldTypeException;
 
 class FieldType
 {
@@ -34,13 +35,17 @@ class FieldType
      * Return the complete type of the specified type of data.
      *
      * @param  string $name
-     * @param  array $data
+     * @param  array|null $data
      * @return array
      */
-    public function type(string $name, array $data = [])
+    public function type(string $name, $data = [])
     {
         $default = [];
         $types = $this->config['types'];
+
+        if (!isset($types[$name]) && (!$data || $data === [])) {
+            throw new LaravelFormFieldTypeException("The config type \"$name\" could not be found.");
+        }
 
         if (isset($types[$name])) {
             $default = $types[$name];

@@ -4,6 +4,7 @@ namespace Ycs77\LaravelFormFieldType\Test;
 
 use FieldType;
 use FormBuilder;
+use Ycs77\LaravelFormFieldType\Exceptions\LaravelFormFieldTypeException;
 
 class FieldTypeTest extends TestCase
 {
@@ -101,6 +102,14 @@ class FieldTypeTest extends TestCase
 
         // assert
         $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function testTypeException()
+    {
+        $this->expectException(LaravelFormFieldTypeException::class);
+        $this->expectExceptionMessage('The config type "not_found_type" could not be found.');
+        FieldType::type('not_found_type');
     }
 
     /** @test */
