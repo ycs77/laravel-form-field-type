@@ -27,57 +27,85 @@ Suggestions can be matched with [Laravel form builder BS4](https://github.com/yc
 
 ## Usage
 
+First, create one form fields class:
+
+```
+php artisan make:formfields UserFormFields
+```
+
 The commonly used fields can be defined in `config/field.php` and the FieldType will be loaded automatically.
 
-> In this case, the 'name' and 'phone' fields have been defined in config/field.php, so they can be used directly.
+> In this case, the 'phone' fields have been defined in config/field.php, so they can be used directly.
+
+*app/FormFields/UserFormFields*
 
 ```php
+<?php
 
-use Illuminate\Support\Facades\Validator;
+namespace App\FormFields;
+
+use Ycs77\LaravelFormFieldType\FormFields;
+
+class UserFormFields extends FormFields
+{
+    /**
+     * Return form fields array.
+     *
+     * @return array
+     */
+    public function fields()
+    {
+        return [
+            'name' => [
+                'rules' => 'required|50',
+            ],
+            'phone',
+            'submit',
+        ];
+    }
+}
+
+```
+
+Second, add FormFields, FormFieldsTrait to controller:
+
+*app/Http/Controllers/MyController*
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\FormFields\UserFormFields;
 use Illuminate\Http\Request;
-use Kris\LaravelFormBuilder\FormBuilderTrait;
-use Ycs77\LaravelFormFieldType\Facades\FieldType;
+use Ycs77\LaravelFormFieldType\Traits\FormFieldsTrait;
 
 class MyController extends Controller 
 {
-    use FormBuilderTrait;
+    use FormFieldsTrait;
 
-    protected $fields = [
-        'name',
-        'phone',
-        'meeting_time' => [
-            'type'  => 'datetime-local',
-            'rules' => 'required',
-        ],
-    ];
+    protected $formFields;
+
+    public function __construct(UserFormFields $formFields)
+    {
+        $this->formFields = $formFields;
+    }
 
     public function index()
     {
-        // Parsing form fields.
-        $form = FieldType::render($this->plain([
+        $form = $this->renderForm([
             'url'    => '/url',
             'method' => 'POST',
-        ]), $this->fields);
+        ]);
 
-        ...
+        // Response view ...
     }
 
     public function store(Request $request)
     {
-        // Get validation rules.
-        $rules = FieldType::rules($this->fields);
+        $data = $this->validateFormData($request);
 
-        // Verification.
-        $request->validate($rules);
-
-        // Get the information.
-        $requestData = $request->only(
-            FieldType::list($this->fields)
-        );
-        // Transform to the right type.
-        $data = FieldType::casts($this->fields, $requestData);
-
-        ...
+        // Save model data ...
     }
 }
 
@@ -313,7 +341,7 @@ $form = FieldType::render($form, $fields);
 
 return [
     'defaults' => [
-        ...
+        // ...
 
         'checkable_group' => [
             'wrapper_class' => 'form-group',
@@ -321,7 +349,7 @@ return [
         ],
 
         'checkbox' => [
-            ...
+            // ...
 
             'choice_options' => [
                 'wrapper_class' => 'custom-control custom-checkbox',
@@ -331,7 +359,7 @@ return [
         ],
 
         'radio' => [
-            ...
+            // ...
 
             'choice_options' => [
                 'wrapper_class' => 'custom-control custom-radio',

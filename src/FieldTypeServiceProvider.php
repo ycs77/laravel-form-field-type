@@ -3,6 +3,7 @@
 namespace Ycs77\LaravelFormFieldType;
 
 use Illuminate\Support\ServiceProvider;
+use Ycs77\LaravelFormFieldType\Console\FormFieldsMakeCommand;
 use Ycs77\LaravelFormFieldType\FieldType;
 
 class FieldTypeServiceProvider extends ServiceProvider
@@ -14,6 +15,8 @@ class FieldTypeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->commands(FormFieldsMakeCommand::class);
+
         $this->publishes([
             __DIR__ . '/../config/field.php' => config_path('field.php'),
         ], 'laravel-form-field-type-config');

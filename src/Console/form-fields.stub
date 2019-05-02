@@ -1,0 +1,23 @@
+<?php
+
+namespace DummyNamespace;
+
+use Ycs77\LaravelFormFieldType\FormFields;
+
+class DummyClass extends FormFields
+{
+    /**
+     * Return form fields array.
+     *
+     * @return array
+     */
+    public function fields()
+    {
+        return [
+            'name' => [
+                'rules' => 'required|50',
+            ],
+            'submit',
+        ];
+    }
+}

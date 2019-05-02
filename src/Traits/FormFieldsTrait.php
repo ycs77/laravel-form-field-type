@@ -4,10 +4,13 @@ namespace Ycs77\LaravelFormFieldType\Traits;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Kris\LaravelFormBuilder\FormBuilderTrait;
 use Ycs77\LaravelFormFieldType\Facades\FieldType;
 
-trait FormFieldsValidate
+trait FormFieldsTrait
 {
+    use FormBuilderTrait;
+
     /**
      * Get form field array.
      *
@@ -29,32 +32,39 @@ trait FormFieldsValidate
     }
 
     /**
-     * Validate request form data.
+     * Return rendered form instance.
+     *
+     * @param  array $data
+     * @param  array|null $fields
+     * @return \Kris\LaravelFormBuilder\Form
+     */
+    public function renderForm(array $data, array $fields = null)
+    {
+        $data = array_merge([
+            'language_name' => 'validation.attributes',
+        ], $data);
+
+        return FieldType::render(
+            $this->plain($data),
+            $this->getFormFields($fields)
+        );
+    }
+
+    /**
+     * Validate request form data and return.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  array|null $fields
-     * @return void
+     * @return array
      *
      * @throws \Illuminate\Validation\ValidationException
      */
     protected function validateFormData(Request $request, array $fields = null)
     {
-        $fields = $this->getFormFields();
-        $custom_messages = property_exists($this, 'validateMessage') ? $this->validateMessage : [];
+        $fields = $this->getFormFields($fields);
+        $messages = property_exists($this, 'validateMessage') ? $this->validateMessage : [];
 
-        $request->validate(FieldType::rules($fields), $custom_messages);
-    }
-
-    /**
-     * Get request data.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  array|null $fields
-     * @return array
-     */
-    protected function getRequestData(Request $request, array $fields = null)
-    {
-        $fields = $this->getFormFields();
+        $request->validate(FieldType::rules($fields), $messages);
         return $request->only(FieldType::list($fields));
     }
 
@@ -65,8 +75,7 @@ trait FormFieldsValidate
      */
     protected function sendFailedResponse()
     {
-        $custom_messages = property_exists($this, 'failedMessage') ? $this->failedMessage : [];
-
-        throw ValidationException::withMessages($custom_messages);
+        $messages = property_exists($this, 'failedMessage') ? $this->failedMessage : [];
+        throw ValidationException::withMessages($messages);
     }
 }

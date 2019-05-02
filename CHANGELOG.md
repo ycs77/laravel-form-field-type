@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.0
+- Add a command to make FormFields
+- Add validate trait
+
 ## 1.1.5
 - Throw field type exception
 ## 1.1.4
