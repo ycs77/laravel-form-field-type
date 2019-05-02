@@ -111,6 +111,22 @@ class MyController extends Controller
 
 ```
 
+## Custom validate message
+
+```php
+protected $validateMessage = [
+    'dimensions' => 'The maximum length and width of the image is 4000x4000px.',
+];
+```
+
+## Custom failed message
+
+```php
+protected $failedMessage = [
+    'images' => 'Can only upload up to 5 images.',
+];
+```
+
 ## Methods
 
 ### type

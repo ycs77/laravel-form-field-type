@@ -18,7 +18,7 @@ trait FormFieldsTrait
      * @param  array|null $fields
      * @return array
      */
-    protected function getFormFields(array $fields = null)
+    public function getFormFields(array $fields = null)
     {
         if ($fields) {
             $result = $fields;
