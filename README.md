@@ -23,7 +23,7 @@ Publish config
 php artisan vendor:publish --tag=laravel-form-field-type-config
 ```
 
-Suggestions can be matched with [Laravel form builder BS4](https://github.com/ycs77/laravel-form-builder-bs4)
+Suggestions can be matched with [Laravel form builder BS4](https://github.com/ycs77/laravel-form-builder-bs4).
 
 ## Usage
 
