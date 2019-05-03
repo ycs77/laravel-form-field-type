@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.2.1
+- Remove CheckableGroupType
 ## 1.2.0
 - Add a command to make FormFields
 - Add validate trait

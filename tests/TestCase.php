@@ -6,7 +6,6 @@ use Kris\LaravelFormBuilder\Facades\FormBuilder;
 use Kris\LaravelFormBuilder\FormBuilderServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Ycs77\LaravelFormFieldType\Facades\FieldType;
-use Ycs77\LaravelFormFieldType\Fields\CheckableGroupType;
 use Ycs77\LaravelFormFieldType\FieldTypeServiceProvider;
 
 class TestCase extends OrchestraTestCase
@@ -40,12 +39,6 @@ class TestCase extends OrchestraTestCase
             'phone' => [
                 'type' => 'tel',
                 'rules' => 'required|max:15',
-            ],
-        ]);
-
-        $app['config']->set('laravel-form-builder', [
-            'custom_fields' => [
-                'checkable_group' => CheckableGroupType::class,
             ],
         ]);
     }
