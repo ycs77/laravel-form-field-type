@@ -15,7 +15,7 @@ class DummyClass extends FormFields
     {
         return [
             'name' => [
-                'rules' => 'required|50',
+                'rules' => 'required|max:50',
             ],
             'submit',
         ];
