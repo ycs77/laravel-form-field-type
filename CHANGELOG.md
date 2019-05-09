@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.2
+- Fix form-fields.stub typo
+- Do not type method to throw a LaravelFormFieldTypeException
 ## 1.2.1
 - Remove CheckableGroupType
 ## 1.2.0

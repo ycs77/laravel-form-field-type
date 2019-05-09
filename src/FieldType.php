@@ -43,10 +43,6 @@ class FieldType
         $default = [];
         $types = $this->config['types'];
 
-        if (!isset($types[$name]) && (!$data || $data === [])) {
-            throw new LaravelFormFieldTypeException("The config type \"$name\" could not be found.");
-        }
-
         if (isset($types[$name])) {
             $default = $types[$name];
         } elseif (isset($types[$data['type'] ?? null])) {
