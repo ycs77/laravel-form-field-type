@@ -69,6 +69,8 @@ class FieldType
      *
      * @param  array $fields
      * @return array
+     *
+     * @throws \Ycs77\LaravelFormFieldType\Exceptions\LaravelFormFieldTypeException
      */
     public function fields(array $fields)
     {
@@ -79,6 +81,8 @@ class FieldType
                 $result[] = $this->type($value);
             } elseif (is_array($value)) {
                 $result[] = $this->type($key, $value);
+            } else {
+                throw new LaravelFormFieldTypeException('The field value must type a String or Array.');
             }
         }
 

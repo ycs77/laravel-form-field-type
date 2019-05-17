@@ -4,6 +4,7 @@ namespace Ycs77\LaravelFormFieldType\Test;
 
 use FieldType;
 use FormBuilder;
+use Ycs77\LaravelFormFieldType\Exceptions\LaravelFormFieldTypeException;
 
 class FieldTypeTest extends TestCase
 {
@@ -90,6 +91,17 @@ class FieldTypeTest extends TestCase
 
         // assert
         $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function testFieldsMethodFieldValueIsNull()
+    {
+        $this->expectException(LaravelFormFieldTypeException::class);
+        $this->expectExceptionMessage('The field value must type a String or Array.');
+
+        FieldType::fields([
+            'name' => null,
+        ]);
     }
 
     /** @test */
