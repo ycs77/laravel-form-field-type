@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.3
+- Optimize type method
+- Throw "The field value must type a String or Array."
 ## 1.2.2
 - Fix form-fields.stub typo
 - Do not type method to throw a LaravelFormFieldTypeException

@@ -8,8 +8,39 @@ use Ycs77\LaravelFormFieldType\Exceptions\LaravelFormFieldTypeException;
 
 class FieldTypeTest extends TestCase
 {
-    /** @test */
-    public function testTypeMethod()
+    public function testType()
+    {
+        // arrange
+        $expected = [
+            'id' => 'name',
+            'type' => 'text',
+            'rules' => 'required|max:20',
+        ];
+
+        // act
+        $actual = FieldType::type('name');
+
+        // assert
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testOverrideTypeFromValue()
+    {
+        // arrange
+        $expected = [
+            'id' => 'nickname',
+            'type' => 'text',
+            'rules' => 'required|max:20',
+        ];
+
+        // act
+        $actual = FieldType::type('nickname', 'name');
+
+        // assert
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testOverrideTypeFromValueType()
     {
         // arrange
         $expected = [
@@ -27,8 +58,7 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
-    public function testOverrideType()
+    public function testOverrideTypeFromName()
     {
         // arrange
         $expected = [
@@ -46,7 +76,6 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
     public function testTypeMethodUseFrontRules()
     {
         // arrange
@@ -65,7 +94,6 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
     public function testFieldsMethod()
     {
         // arrange
@@ -73,6 +101,16 @@ class FieldTypeTest extends TestCase
             [
                 'id' => 'name',
                 'type' => 'text',
+                'rules' => 'required|max:20',
+            ],
+            [
+                'id' => 'nickname',
+                'type' => 'text',
+                'rules' => 'required|max:20',
+            ],
+            [
+                'id' => 'phone',
+                'type' => 'tel',
                 'rules' => 'required|max:20',
             ],
             [
@@ -84,6 +122,11 @@ class FieldTypeTest extends TestCase
         // act
         $actual = FieldType::fields([
             'name',
+            'nickname' => 'name',
+            'phone' => [
+                'type' => 'phone',
+                'rules' => 'required|max:20',
+            ],
             'age' => [
                 'type' => 'number',
             ],
@@ -93,7 +136,6 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
     public function testFieldsMethodFieldValueIsNull()
     {
         $this->expectException(LaravelFormFieldTypeException::class);
@@ -104,7 +146,6 @@ class FieldTypeTest extends TestCase
         ]);
     }
 
-    /** @test */
     public function testListMethod()
     {
         // arrange
@@ -125,7 +166,6 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
     public function testMapMethod()
     {
         // arrange
@@ -148,7 +188,6 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
     public function testCastsMethod()
     {
         // arrange
@@ -171,7 +210,6 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
     public function testRenderMethod()
     {
         // arrange
@@ -197,7 +235,6 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /** @test */
     public function testRulesMethod()
     {
         // arrange

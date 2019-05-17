@@ -147,9 +147,19 @@ $array = FieldType::type('age', [
 // ]
 ```
 
+Or use same:
+```php
+$array = FieldType::type('age', 'number');
+
+// [
+//     'id'   => 'age',
+//     'type' => 'number',
+// ]
+```
+
 Get exist field type:
 ```php
-$array_2 = FieldType::type('nickname', [
+$array = FieldType::type('nickname', [
     'type' => 'name',
     'rules' => 'required',
 ]);
@@ -163,7 +173,7 @@ $array_2 = FieldType::type('nickname', [
 
 Override field type:
 ```php
-$array_3 = FieldType::type('name', [
+$array = FieldType::type('name', [
     'rules' => 'required',
 ]);
 
@@ -176,7 +186,7 @@ $array_3 = FieldType::type('name', [
 
 If use `front_rules` attribute, only front use this rules:
 ```php
-$array_front_rules = FieldType::type('name', [
+$array = FieldType::type('name', [
     'type' => 'name',
     'front_rules' => 'required',
 ]);

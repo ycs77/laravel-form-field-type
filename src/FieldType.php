@@ -35,23 +35,27 @@ class FieldType
      * Return the complete type of the specified type of data.
      *
      * @param  string $name
-     * @param  array|null $data
+     * @param  array|string $data
      * @return array
      */
     public function type(string $name, $data = [])
     {
-        $default = [];
+        $typeOption = [];
         $types = $this->config['types'];
-
-        if (isset($types[$name])) {
-            $default = $types[$name];
-        } elseif (isset($types[$data['type'] ?? null])) {
-            $default = $types[$data['type']];
-            unset($data['type']);
+        if (is_array($data)) {
+            if (isset($data['type']) && isset($types[$data['type']])) {
+                $typeOption = $types[$data['type']];
+                unset($data['type']);
+            } elseif (isset($types[$name])) {
+                $typeOption = $types[$name];
+            }
+        } elseif (is_string($data)) {
+            $typeOption = $this->getStringTypeOption($data);
+            $data = [];
         }
 
         $field = array_merge(
-            $default,
+            $typeOption,
             ['id' => $name],
             $data
         );
@@ -62,6 +66,17 @@ class FieldType
         }
 
         return $field;
+    }
+
+    /**
+     * Get string type option.
+     *
+     * @param  string $type
+     * @return array
+     */
+    protected function getStringTypeOption(string $type, $default = [])
+    {
+        return $this->config['types'][$type] ?? $default;
     }
 
     /**
@@ -77,10 +92,10 @@ class FieldType
         $result = [];
 
         foreach ($fields as $key => $value) {
-            if (is_string($value)) {
-                $result[] = $this->type($value);
-            } elseif (is_array($value)) {
+            if (is_array($value) || is_string($key) && is_string($value)) {
                 $result[] = $this->type($key, $value);
+            } elseif (is_string($value)) {
+                $result[] = $this->type($value);
             } else {
                 throw new LaravelFormFieldTypeException('The field value must type a String or Array.');
             }
