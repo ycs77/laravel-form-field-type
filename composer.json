@@ -15,10 +15,10 @@
         }
     ],
     "require": {
+        "kris/laravel-form-builder": "^1.16",
         "php" : "~7.1"
     },
     "require-dev": {
-        "kris/laravel-form-builder": "^1.16",
         "orchestra/testbench": "~3.0",
         "phpunit/phpunit": ">=7.0"
     },

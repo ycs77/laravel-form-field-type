@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.2.4
+- Update composer packages
 ## 1.2.3
 - Optimize type method
 - Throw "The field value must type a String or Array."
