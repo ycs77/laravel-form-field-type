@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static array list(array $fields)
  * @method static array map(array $fields, Closure $collback)
  * @method static array casts(array $fields, array $data)
- * @method static \Kris\LaravelFormBuilder\Form render(\Kris\LaravelFormBuilder\Form $form, array $fields_data)
+ * @method static \Kris\LaravelFormBuilder\Form form(\Kris\LaravelFormBuilder\Form $form, array $fields_data)
  * @method static array rules(array $fields)
  *
  * @see \Ycs77\LaravelFormFieldType\FieldType

@@ -161,13 +161,13 @@ class FieldType
     }
 
     /**
-     * Compile the form field.
+     * Compile the form.
      *
      * @param  \Kris\LaravelFormBuilder\Form $form
      * @param  array $fields_data
      * @return \Kris\LaravelFormBuilder\Form
      */
-    public function render(Form $form, array $fields_data)
+    public function form(Form $form, array $fields_data)
     {
         $fields = $this->fields($fields_data);
 

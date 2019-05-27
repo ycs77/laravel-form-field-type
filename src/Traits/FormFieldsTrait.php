@@ -44,7 +44,7 @@ trait FormFieldsTrait
             'language_name' => 'validation.attributes',
         ], $data);
 
-        return FieldType::render(
+        return FieldType::form(
             $this->plain($data),
             $this->getFormFields($fields)
         );

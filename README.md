@@ -266,9 +266,9 @@ $array = FieldType::casts($fields, $data);
 // ]
 ```
 
-### render
+### form
 
-Compile the form field:
+Compile the form:
 
 ```php
 $form = $this->plain();
@@ -279,7 +279,7 @@ $fields = [
         'rules' => 'required',
     ],
 ];
-$form = FieldType::render($form, $fields);
+$form = FieldType::form($form, $fields);
 
 // => \Kris\LaravelFormBuilder\Form
 // All fields have been added to the form.

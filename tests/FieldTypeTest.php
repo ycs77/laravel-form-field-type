@@ -210,7 +210,7 @@ class FieldTypeTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testRenderMethod()
+    public function testFormMethod()
     {
         // arrange
         $form     = FormBuilder::plain();
@@ -223,7 +223,7 @@ class FieldTypeTest extends TestCase
             ]);
 
         // act
-        $actual = FieldType::render($form, [
+        $actual = FieldType::form($form, [
             'name',
             'meeting_time' => [
                 'type' => 'datetime-local',
