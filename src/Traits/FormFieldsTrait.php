@@ -40,8 +40,13 @@ trait FormFieldsTrait
      */
     public function renderForm(array $data, array $fields = null)
     {
+        $langPath = 'validation.attributes';
+        if (property_exists($this, 'langPath')) {
+            $langPath = $this->langPath;
+        }
+
         $data = array_merge([
-            'language_name' => 'validation.attributes',
+            'language_name' => $langPath,
         ], $data);
 
         return FieldType::form(

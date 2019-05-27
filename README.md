@@ -113,6 +113,8 @@ class MyController extends Controller
 
 ## Custom validate message
 
+Add property `validateMessage` to controller.
+
 ```php
 protected $validateMessage = [
     'dimensions' => 'The maximum length and width of the image is 4000x4000px.',
@@ -121,10 +123,20 @@ protected $validateMessage = [
 
 ## Custom failed message
 
+Add property `failedMessage` to controller.
+
 ```php
 protected $failedMessage = [
     'images' => 'Can only upload up to 5 images.',
 ];
+```
+
+## Custom lang path
+
+Add property `langPath` to controller.
+
+```php
+protected $langPath = 'validation.attributes';
 ```
 
 ## Methods
