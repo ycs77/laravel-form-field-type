@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.0-rc.1
+- Change `render` method name to `form`
+- Determine whether the attribute `langPath` exists and get value
+- Injects `data` when FormFields is initialized
+
 ## 1.2.4
 - Update composer packages
 ## 1.2.3
