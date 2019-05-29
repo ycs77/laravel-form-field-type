@@ -14,7 +14,6 @@ trait FormFieldsTrait
     /**
      * Get form field array.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  array|null $fields
      * @return array
      */
