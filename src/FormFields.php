@@ -7,16 +7,16 @@ abstract class FormFields
     /**
      * Form data.
      *
-     * @var array|null
+     * @var array
      */
     protected $data;
 
     /**
      * Create form fields instance.
      *
-     * @param array|null  $data
+     * @param array  $data
      */
-    public function __construct($data = null)
+    public function __construct($data = [])
     {
         $this->data = $data;
     }
