@@ -4,7 +4,6 @@ namespace Ycs77\LaravelFormFieldType;
 
 use Illuminate\Support\ServiceProvider;
 use Ycs77\LaravelFormFieldType\Console\FormFieldsMakeCommand;
-use Ycs77\LaravelFormFieldType\FieldType;
 
 class FieldTypeServiceProvider extends ServiceProvider
 {

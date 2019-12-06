@@ -23,7 +23,7 @@ class FieldType
     protected $formConfig;
 
     /**
-     * Create new instance
+     * Create new instance.
      */
     public function __construct($app)
     {

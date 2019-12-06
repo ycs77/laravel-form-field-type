@@ -213,7 +213,7 @@ class FieldTypeTest extends TestCase
     public function testFormMethod()
     {
         // arrange
-        $form     = FormBuilder::plain();
+        $form = FormBuilder::plain();
         $expected = FormBuilder::plain()
             ->add('name', 'text', [
                 'rules' => 'required|max:20',
