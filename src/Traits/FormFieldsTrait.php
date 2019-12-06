@@ -69,6 +69,7 @@ trait FormFieldsTrait
         $messages = property_exists($this, 'validateMessage') ? $this->validateMessage : [];
 
         $request->validate(FieldType::rules($fields), $messages);
+
         return $request->only(FieldType::list($fields));
     }
 
