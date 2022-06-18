@@ -14,7 +14,7 @@ trait FormFieldsTrait
     /**
      * Get form field array.
      *
-     * @param  array|null $fields
+     * @param  array|null  $fields
      * @return array
      */
     public function getFormFields(array $fields = null)
@@ -33,8 +33,8 @@ trait FormFieldsTrait
     /**
      * Return rendered form instance.
      *
-     * @param  array $data
-     * @param  array|null $fields
+     * @param  array  $data
+     * @param  array|null  $fields
      * @return \Kris\LaravelFormBuilder\Form
      */
     public function renderForm(array $data, array $fields = null)
@@ -58,7 +58,7 @@ trait FormFieldsTrait
      * Validate request form data and return.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  array|null $fields
+     * @param  array|null  $fields
      * @return array
      *
      * @throws \Illuminate\Validation\ValidationException

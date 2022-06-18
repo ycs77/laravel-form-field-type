@@ -34,8 +34,8 @@ class FieldType
     /**
      * Return the complete type of the specified type of data.
      *
-     * @param  string $name
-     * @param  array|string $data
+     * @param  string  $name
+     * @param  array|string  $data
      * @return array
      */
     public function type(string $name, $data = [])
@@ -71,7 +71,7 @@ class FieldType
     /**
      * Get string type option.
      *
-     * @param  string $type
+     * @param  string  $type
      * @return array
      */
     protected function getStringTypeOption(string $type, $default = [])
@@ -82,7 +82,7 @@ class FieldType
     /**
      * Parsing field data.
      *
-     * @param  array $fields
+     * @param  array  $fields
      * @return array
      *
      * @throws \Ycs77\LaravelFormFieldType\Exceptions\LaravelFormFieldTypeException
@@ -107,7 +107,7 @@ class FieldType
     /**
      * Return the ID of each field.
      *
-     * @param  array $fields
+     * @param  array  $fields
      * @return array
      */
     public function list(array $fields)
@@ -120,8 +120,8 @@ class FieldType
     /**
      * Traversing the field.
      *
-     * @param  array $fields
-     * @param  Closure $collback
+     * @param  array  $fields
+     * @param  Closure  $collback
      * @return array
      */
     public function map(array $fields, Closure $collback)
@@ -132,8 +132,8 @@ class FieldType
     /**
      * Transform to the right type.
      *
-     * @param  array $fields
-     * @param  array $data
+     * @param  array  $fields
+     * @param  array  $data
      * @return array
      */
     public function casts(array $fields, array $data)
@@ -143,7 +143,7 @@ class FieldType
             switch ($field['type']) {
                 case 'number':
                 case 'range':
-                    $data[$id] = (int)$data[$id];
+                    $data[$id] = (int) $data[$id];
                     break;
                 case 'date':
                     $data[$id] = Carbon::parse($data[$id])->format('Y-m-d');
@@ -163,8 +163,8 @@ class FieldType
     /**
      * Compile the form.
      *
-     * @param  \Kris\LaravelFormBuilder\Form $form
-     * @param  array $fields_data
+     * @param  \Kris\LaravelFormBuilder\Form  $form
+     * @param  array  $fields_data
      * @return \Kris\LaravelFormBuilder\Form
      */
     public function form(Form $form, array $fields_data)
@@ -187,7 +187,7 @@ class FieldType
     /**
      * Parsing validation rules.
      *
-     * @param  array $fields
+     * @param  array  $fields
      * @return array
      */
     public function rules(array $fields)

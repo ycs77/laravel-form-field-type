@@ -34,7 +34,7 @@ class FormFieldsMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/form-fields.stub';
+        return __DIR__.'/form-fields.stub';
     }
 
     /**
@@ -45,6 +45,6 @@ class FormFieldsMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\FormFields';
+        return $rootNamespace.'\FormFields';
     }
 }
