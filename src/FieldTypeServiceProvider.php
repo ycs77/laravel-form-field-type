@@ -17,7 +17,7 @@ class FieldTypeServiceProvider extends ServiceProvider
         $this->commands(FormFieldsMakeCommand::class);
 
         $this->publishes([
-            __DIR__ . '/../config/field.php' => config_path('field.php'),
+            __DIR__.'/../config/field.php' => config_path('field.php'),
         ], 'laravel-form-field-type-config');
     }
 
@@ -32,6 +32,6 @@ class FieldTypeServiceProvider extends ServiceProvider
             return new FieldType($app);
         });
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/field.php', 'field');
+        $this->mergeConfigFrom(__DIR__.'/../config/field.php', 'field');
     }
 }

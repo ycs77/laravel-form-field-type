@@ -14,7 +14,7 @@ abstract class FormFields
     /**
      * Create form fields instance.
      *
-     * @param array  $data
+     * @param  array  $data
      */
     public function __construct($data = [])
     {
