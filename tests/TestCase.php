@@ -3,10 +3,8 @@
 namespace Ycs77\LaravelFormFieldType\Test;
 
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
-use Kris\LaravelFormBuilder\FormBuilderServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Ycs77\LaravelFormFieldType\Facades\FieldType;
-use Ycs77\LaravelFormFieldType\FieldTypeServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
@@ -46,15 +44,17 @@ class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app)
     {
         return [
-            FieldTypeServiceProvider::class,
-            FormBuilderServiceProvider::class,
+            \Collective\Html\HtmlServiceProvider::class,
+            \Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+            \Ycs77\LaravelFormFieldType\FieldTypeServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'FieldType' => FieldType::class,
+            'FieldType'   => FieldType::class,
+            'Form'        => \Collective\Html\FormFacade::class,
             'FormBuilder' => FormBuilder::class,
         ];
     }
