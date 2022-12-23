@@ -325,11 +325,11 @@ $array = FieldType::rules($fields);
 
 [ico-version]: https://img.shields.io/packagist/v/ycs77/laravel-form-field-type.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-ci]: https://img.shields.io/travis/ycs77/laravel-form-field-type?style=flat-square
+[ico-ci]: https://img.shields.io/travis/ycs77/laravel-form-field-type?label=tests&style=flat-square
 [ico-style-ci]: https://github.styleci.io/repos/166167047/shield?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/ycs77/laravel-form-field-type.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/ycs77/laravel-form-field-type
-[link-ci]: https://travis-ci.org/ycs77/laravel-form-field-type
+[link-ci]: https://app.travis-ci.com/github/ycs77/laravel-form-field-type
 [link-style-ci]: https://github.styleci.io/repos/166167047
 [link-downloads]: https://packagist.org/packages/ycs77/laravel-form-field-type
